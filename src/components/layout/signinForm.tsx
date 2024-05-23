@@ -38,7 +38,7 @@ export function SignInForm() {
         </button>
         <p className="text-center pt-6 text-sm ">
           {" "}
-          <span className="opacity-60"> Don't have an account? </span>
+          <span className="opacity-60"> Don&rsquo;t have an account? </span>
           <Link className="opacity-100 text-blue-400" href="/auth/sign-up">
             Sign up
           </Link>{" "}
