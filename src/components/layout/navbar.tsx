@@ -40,18 +40,6 @@ const components: { title: string; href: string; description: string }[] = [
     href: "/docs/primitives/scroll-area",
     description: "Visually or semantically separates content.",
   },
-  {
-    title: "Tabs",
-    href: "/docs/primitives/tabs",
-    description:
-      "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
-  },
-  {
-    title: "Tooltip",
-    href: "/docs/primitives/tooltip",
-    description:
-      "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
-  },
 ];
 
 export function Navbar() {
@@ -78,15 +66,7 @@ export function Navbar() {
                       <a
                         className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
                         href="/"
-                      >
-                        <div className="mb-2 mt-4 text-lg font-medium">
-                          shadcn/ui
-                        </div>
-                        <p className="text-sm leading-tight text-muted-foreground">
-                          Beautifully designed components built with Radix UI
-                          and Tailwind CSS.
-                        </p>
-                      </a>
+                      ></a>
                     </NavigationMenuLink>
                   </li>
                   <ListItem href="/docs" title="Introduction">
@@ -94,12 +74,6 @@ export function Navbar() {
                   </ListItem>
                   <ListItem href="/docs/installation" title="Installation">
                     How to install dependencies and structure your app.
-                  </ListItem>
-                  <ListItem
-                    href="/docs/primitives/typography"
-                    title="Typography"
-                  >
-                    Styles for headings, paragraphs, lists...etc
                   </ListItem>
                 </ul>
               </NavigationMenuContent>

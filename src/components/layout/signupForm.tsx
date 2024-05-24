@@ -33,8 +33,8 @@ export function SignupForm() {
           </LabelInputContainer>
         </div>
         <LabelInputContainer className="mb-4">
-          <Label htmlFor="email">Email Address</Label>
-          <Input id="email" placeholder="hongthinh@gmail.com" type="email" />
+          <Label htmlFor="userName">UserName </Label>
+          <Input id="userName" placeholder="hongthinh@gmail.com" type="text" />
         </LabelInputContainer>
         <LabelInputContainer className="mb-4">
           <Label htmlFor="password">Password</Label>

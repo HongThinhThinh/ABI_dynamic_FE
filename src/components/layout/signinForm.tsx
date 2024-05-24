@@ -22,8 +22,8 @@ export function SignInForm() {
       </h2>
       <form className="my-8" onSubmit={handleSubmit}>
         <LabelInputContainer className="mb-4">
-          <Label htmlFor="email">Email Address</Label>
-          <Input id="email" placeholder="hongthinh123@gmail.com" type="email" />
+          <Label htmlFor="email">Username</Label>
+          <Input id="email" placeholder="hongthinh123" type="text" />
         </LabelInputContainer>
         <LabelInputContainer className="mb-4">
           <Label htmlFor="password">Password</Label>
