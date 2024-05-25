@@ -1,10 +1,10 @@
 import React from "react";
 import "./button.css";
-function Button() {
+function Button({ onClick }: any): any {
   return (
     <div>
       <div className="sp">
-        <button className="sparkle-button">
+        <button onClick={onClick} className="sparkle-button">
           <span className="spark"></span>
           <span className="backdrop"></span>
           <svg
