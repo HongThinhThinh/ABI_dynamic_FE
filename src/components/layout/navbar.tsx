@@ -15,6 +15,7 @@ import { cn } from "@/utils/cn";
 import Account from "../ui/account";
 import Image from "next/image";
 import { Input } from "../ui/input";
+import { useRouter } from "next/navigation";
 
 const components: { title: string; href: string; description: string }[] = [
   {
@@ -29,20 +30,10 @@ const components: { title: string; href: string; description: string }[] = [
     description:
       "For sighted users to preview content available behind a link.",
   },
-  {
-    title: "Progress",
-    href: "/docs/primitives/progress",
-    description:
-      "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
-  },
-  {
-    title: "Scroll-area",
-    href: "/docs/primitives/scroll-area",
-    description: "Visually or semantically separates content.",
-  },
 ];
 
 export function Navbar() {
+  const route = useRouter();
   return (
     <div className="flex justify-between items-center">
       {/* <img
@@ -53,7 +44,9 @@ export function Navbar() {
         alt="Picture of the author"
       /> */}
 
-      <h1 className="w-[40%]">B-Learning</h1>
+      <h1 className="w-[40%]" onClick={() => route.push("/")}>
+        B-Learning
+      </h1>
       <div className="flex justify-around items-center flex-[1]">
         <NavigationMenu>
           <NavigationMenuList>
@@ -61,14 +54,14 @@ export function Navbar() {
               <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                  <li className="row-span-3">
+                  {/* <li className="row-span-3">
                     <NavigationMenuLink asChild>
                       <a
                         className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
                         href="/"
                       ></a>
                     </NavigationMenuLink>
-                  </li>
+                  </li> */}
                   <ListItem href="/docs" title="Introduction">
                     Re-usable components built using Radix UI and Tailwind CSS.
                   </ListItem>

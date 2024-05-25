@@ -8,7 +8,7 @@
             transparent),
         hsl(260 calc(var(--active) * 97%) calc((var(--active) * 44%) + 12%));
     background: var(--bg);
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 500;
     border: 0;
     cursor: pointer;
@@ -25,6 +25,8 @@
     transition: box-shadow var(--transition), scale var(--transition), background var(--transition);
     scale: calc(1 + (var(--active) * 0.1));
     transition: .3s;
+    position: sticky;
+    z-index: 10000000000000;
 }
 
 .sparkle-button:active {
