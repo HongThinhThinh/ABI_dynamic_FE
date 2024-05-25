@@ -7,6 +7,7 @@ function HomePage() {
   return (
     <div>
       <Button />
+
       <div className="h-[40rem] w-full flex items-center justify-center ">
         <PinContainer
           title="/ui.aceternity.com"
