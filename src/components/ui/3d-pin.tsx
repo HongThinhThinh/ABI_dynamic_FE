@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/utils/cn";
 import ButtonDelete from "./delete-button/ButtonDelete";
-import { Button } from "antd";
+import { Button, Popconfirm } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
 import { Meteors } from "./meteors";
 export const PinContainer = ({
@@ -42,7 +42,7 @@ export const PinContainer = ({
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       onClick={() => {
-        // alert("clicked");  
+        // alert("clicked");
       }}
     >
       <div
@@ -85,12 +85,15 @@ export const PinPerspective = ({
           <Button type="dashed" onClick={() => alert("Clicked Edit")}>
             Edit
           </Button>
-          <Button
-            onClick={handleDelete}
-            type="primary"
-            danger
-            icon={<DeleteOutlined />}
-          ></Button>
+
+          <Popconfirm
+            title="Are you sure to delete this project"
+            onConfirm={handleDelete}
+            okText="Yes"
+            cancelText="No"
+          >
+            <Button type="primary" danger icon={<DeleteOutlined />}></Button>
+          </Popconfirm>
         </div>
 
         <div

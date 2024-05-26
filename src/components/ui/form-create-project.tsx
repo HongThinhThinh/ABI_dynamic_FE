@@ -4,6 +4,8 @@ import { Form, Input, Upload } from "antd";
 import UploadImg from "./uploadImg/UploadImg";
 import ImgCrop from "antd-img-crop";
 import uploadFile from "../../hooks/useUpload";
+import { BackgroundGradient } from "./background-gradient";
+import { Meteors } from "./meteors";
 type FieldType = {
   name?: string;
   apiPrefix?: string;
@@ -99,7 +101,7 @@ const FormCreateProject = forwardRef<FormInstance, FormCreateProjectProps>(
               onChange={onChange}
               onPreview={onPreview}
             >
-              {fileList?.length < 5 && "+ Upload"}
+              {fileList?.length < 1 && "+ Upload"}
             </Upload>
           </ImgCrop>
         </Form.Item>
