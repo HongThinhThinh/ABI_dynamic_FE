@@ -42,7 +42,7 @@ export const PinContainer = ({
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       onClick={() => {
-        // alert("clicked");
+        // alert("clicked");  
       }}
     >
       <div

@@ -1,6 +1,7 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, useState } from "react";
 import type { FormInstance, FormProps } from "antd";
 import { Form, Input } from "antd";
+import UploadImg from "./uploadImg/UploadImg";
 
 type FieldType = {
   name?: string;
@@ -24,6 +25,9 @@ const FormCreateProject = forwardRef<FormInstance, FormCreateProjectProps>(
       console.log("Failed:", errorInfo);
     };
 
+    const [file, setFile] = useState(
+      "https://api-private.atlassian.com/users/62ebe5ece9e887b64753f5587dac8926/avatar"
+    );
     return (
       <Form
         name="basic"
@@ -53,6 +57,14 @@ const FormCreateProject = forwardRef<FormInstance, FormCreateProjectProps>(
           rules={[{ required: true, message: "Please input your API Prefix!" }]}
         >
           <Input />
+        </Form.Item>
+        <Form.Item
+          label="Project Img"
+          name="Project Img"
+          labelCol={{ span: 24 }}
+          // onChange={(e) => setFile(e.target.files[0])}
+        >
+          <UploadImg />
         </Form.Item>
       </Form>
     );
