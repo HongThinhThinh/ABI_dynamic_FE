@@ -17,7 +17,8 @@ function HomePage() {
       id: 1,
       name: "Hong Thinh",
       apiPrefix: "Hihi",
-      img: "https://scontent.fsgn2-4.fna.fbcdn.net/v/t39.30808-6/406534560_1295561694488229_5721930519039440287_n.jpg?stp=cp6_dst-jpg&_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_ohc=9hW9UL5cfwMQ7kNvgHGhZjz&_nc_ht=scontent.fsgn2-4.fna&oh=00_AYDkBeBqS3goy6hC1QypUwQelUZYWaY1XgtYypSbP8aFxQ&oe=6657BD6E",
+      project_img:
+        "https://scontent.fsgn2-4.fna.fbcdn.net/v/t39.30808-6/406534560_1295561694488229_5721930519039440287_n.jpg?stp=cp6_dst-jpg&_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_ohc=9hW9UL5cfwMQ7kNvgHGhZjz&_nc_ht=scontent.fsgn2-4.fna&oh=00_AYDkBeBqS3goy6hC1QypUwQelUZYWaY1XgtYypSbP8aFxQ&oe=6657BD6E",
     },
   ]);
 
@@ -39,13 +40,9 @@ function HomePage() {
   };
 
   const handleFormSubmit = (newData: any) => {
-    const dataWithImg = {
-      ...newData,
-      img: "https://scontent.fsgn2-4.fna.fbcdn.net/v/t39.30808-6/406534560_1295561694488229_5721930519039440287_n.jpg?stp=cp6_dst-jpg&_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_ohc=9hW9UL5cfwMQ7kNvgHGhZjz&_nc_ht=scontent.fsgn2-4.fna&oh=00_AYDkBeBqS3goy6hC1QypUwQelUZYWaY1XgtYypSbP8aFxQ&oe=6657BD6E",
-    };
     setData((prevData) => [
       ...prevData,
-      { id: prevData.length + 1, ...dataWithImg },
+      { id: prevData.length + 1, ...newData },
     ]);
     setIsModalOpen(false);
   };
@@ -74,7 +71,7 @@ function HomePage() {
                   key={item.id}
                   title={item.name}
                   apiPrefix={item.apiPrefix}
-                  img={item.img}
+                  img={item.project_img}
                   handleDelete={() => handleDelete(item.id)}
                 />
               ))}

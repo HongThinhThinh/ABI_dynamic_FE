@@ -1,22 +1,29 @@
 import React, { forwardRef, useState } from "react";
 import type { FormInstance, FormProps } from "antd";
-import { Form, Input } from "antd";
+import { Form, Input, Upload } from "antd";
 import UploadImg from "./uploadImg/UploadImg";
-
+import ImgCrop from "antd-img-crop";
+import uploadFile from "../../hooks/useUpload";
 type FieldType = {
   name?: string;
   apiPrefix?: string;
+  project_img?: string;
 };
 
 type FormCreateProjectProps = {
   onSubmit: (values: FieldType) => void;
 };
-
 const FormCreateProject = forwardRef<FormInstance, FormCreateProjectProps>(
   ({ onSubmit }, ref) => {
-    const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
-      console.log("Success:", values);
+    const [form] = Form.useForm();
+
+    const onFinish: FormProps<FieldType>["onFinish"] = async (values) => {
+      const linkImg = await uploadFile(fileList[0].originFileObj);
+      console.log(linkImg);
+      values.project_img = linkImg;
       onSubmit(values);
+      form.resetFields();
+      setFileList([]);
     };
 
     const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (
@@ -25,11 +32,28 @@ const FormCreateProject = forwardRef<FormInstance, FormCreateProjectProps>(
       console.log("Failed:", errorInfo);
     };
 
-    const [file, setFile] = useState(
-      "https://api-private.atlassian.com/users/62ebe5ece9e887b64753f5587dac8926/avatar"
-    );
+    const [fileList, setFileList] = useState([]);
+    const onChange = ({ fileList: newFileList }: any) => {
+      console.log(newFileList);
+      setFileList(newFileList);
+    };
+    const onPreview = async (file) => {
+      let src = file.url;
+      if (!src) {
+        src = await new Promise((resolve) => {
+          const reader = new FileReader();
+          reader.readAsDataURL(file.originFileObj);
+          reader.onload = () => resolve(reader.result);
+        });
+      }
+      const image = new Image();
+      image.src = src;
+      const imgWindow = window.open(src);
+      imgWindow?.document.write(image.outerHTML);
+    };
     return (
       <Form
+        form={form}
         name="basic"
         labelCol={{ span: 8 }}
         style={{ maxWidth: 500 }}
@@ -58,13 +82,21 @@ const FormCreateProject = forwardRef<FormInstance, FormCreateProjectProps>(
         >
           <Input />
         </Form.Item>
-        <Form.Item
-          label="Project Img"
-          name="Project Img"
+        <Form.Item<FieldType>
+          label="Project Image"
+          name="project_img"
           labelCol={{ span: 24 }}
-          // onChange={(e) => setFile(e.target.files[0])}
         >
-          <UploadImg />
+          <ImgCrop rotationSlider>
+            <Upload
+              listType="picture-card"
+              fileList={fileList}
+              onChange={onChange}
+              onPreview={onPreview}
+            >
+              {fileList?.length < 5 && "+ Upload"}
+            </Upload>
+          </ImgCrop>
         </Form.Item>
       </Form>
     );

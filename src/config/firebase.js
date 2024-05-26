@@ -1,6 +1,8 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -13,7 +15,7 @@ const firebaseConfig = {
   storageBucket: "abi-dynamic.appspot.com",
   messagingSenderId: "308741040770",
   appId: "1:308741040770:web:22ae61e5a7fb30a2a3629b",
-  measurementId: "G-1QK2BBFMCF"
+  measurementId: "G-1QK2BBFMCF",
 };
 
 // Initialize Firebase
