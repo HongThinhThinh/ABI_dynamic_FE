@@ -6,12 +6,14 @@ import { BackgroundBeams } from "@/components/ui/background-beams";
 import { BackgroundGradient } from "@/components/ui/background-gradient";
 import Button from "@/components/ui/button/button";
 import FormCreateProject from "@/components/ui/form-create-project";
+import Loading from "@/components/ui/loader/loading";
 
 import { Modal } from "antd";
 import React, { useRef, useState } from "react";
 
 function HomePage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState([
     {
       id: 1,
@@ -46,6 +48,12 @@ function HomePage() {
     ]);
     setIsModalOpen(false);
   };
+  if (isLoading)
+    return (
+      <>
+        <Loading />
+      </>
+    );
 
   return (
     <div>
@@ -57,7 +65,11 @@ function HomePage() {
           onOk={handleOk}
           onCancel={handleCancel}
         >
-          <FormCreateProject ref={formRef} onSubmit={handleFormSubmit} />
+          <FormCreateProject
+            setIsLoading={setIsLoading}
+            ref={formRef}
+            onSubmit={handleFormSubmit}
+          />
         </Modal>
 
         {data?.length > 0 ? (

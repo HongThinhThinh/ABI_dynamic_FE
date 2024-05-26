@@ -8,22 +8,26 @@ type FieldType = {
   name?: string;
   apiPrefix?: string;
   project_img?: string;
+  setIsLoading?: any;
 };
 
 type FormCreateProjectProps = {
   onSubmit: (values: FieldType) => void;
+  setIsLoading: (values: any) => void;
 };
 const FormCreateProject = forwardRef<FormInstance, FormCreateProjectProps>(
-  ({ onSubmit }, ref) => {
+  ({ onSubmit, setIsLoading }, ref) => {
     const [form] = Form.useForm();
 
     const onFinish: FormProps<FieldType>["onFinish"] = async (values) => {
+      setIsLoading(true);
       const linkImg = await uploadFile(fileList[0].originFileObj);
       console.log(linkImg);
       values.project_img = linkImg;
       onSubmit(values);
       form.resetFields();
       setFileList([]);
+      setIsLoading(false);
     };
 
     const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (
@@ -51,6 +55,7 @@ const FormCreateProject = forwardRef<FormInstance, FormCreateProjectProps>(
       const imgWindow = window.open(src);
       imgWindow?.document.write(image.outerHTML);
     };
+
     return (
       <Form
         form={form}
