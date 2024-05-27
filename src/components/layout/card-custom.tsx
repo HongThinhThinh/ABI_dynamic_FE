@@ -6,7 +6,7 @@ interface Props {
   title?: string;
   apiPrefix?: string;
   img?: string;
-  id?: string;
+  id?: number;
   handleDelete?: () => void;
 }
 
@@ -16,8 +16,8 @@ function CardCustom(props: Props) {
   return (
     <PinContainer
       id={id}
-      title="/ui.aceternity.com"
-      href="https://twitter.com/mannupaaji"
+      title={title}
+      apiPrefix={apiPrefix}
       handleDelete={handleDelete}
     >
       <div className="flex basis-full flex-col p-4 tracking-tight text-slate-100/50 sm:basis-1/2 w-[20rem] h-[20rem]">

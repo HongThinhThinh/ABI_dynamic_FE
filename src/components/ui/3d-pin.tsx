@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 export const PinContainer = ({
   children,
   title,
-  href,
+  apiPrefix,
   className,
   containerClassName,
   handleDelete,
@@ -18,9 +18,9 @@ export const PinContainer = ({
 }: {
   children: React.ReactNode;
   title?: string;
-  href?: string;
+  apiPrefix?: string;
   className?: string;
-  id?: string;
+  id?: number;
   containerClassName?: string;
   handleDelete?: () => void;
 }) => {
@@ -35,7 +35,10 @@ export const PinContainer = ({
     setTransform("translate(-50%,-50%) rotateX(0deg) scale(1)");
   };
 
-  const route = useRouter();
+  const router = useRouter();
+  const handleClick = () => {
+    router.push(`/project/${id}`);
+  };
   return (
     <div
       className={cn(
@@ -45,15 +48,13 @@ export const PinContainer = ({
       style={{}}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
-      onClick={() => {
-        route.push(`/project/${id}`);
-      }}
     >
       <div
         style={{
           perspective: "1000px",
           transform: "rotateX(70deg) translateZ(0deg)",
         }}
+        onClick={handleClick}
         className="absolute left-1/2 top-1/2 ml-[0.09375rem] mt-4 -translate-x-1/2 -translate-y-1/2"
       >
         <div
@@ -71,7 +72,7 @@ export const PinContainer = ({
         id={id}
         handleDelete={handleDelete}
         title={title}
-        href={href}
+        apiPrefix={apiPrefix}
       />
     </div>
   );
@@ -79,22 +80,30 @@ export const PinContainer = ({
 
 export const PinPerspective = ({
   title,
-  href,
+  apiPrefix,
   id,
   handleDelete,
 }: {
-  id?: string;
+  id?: number;
   title?: string;
   href?: string;
   handleDelete?: () => void; // Corrected props declaration
+  apiPrefix?: string;
 }) => {
-  const route = useRouter();
+  const router = useRouter();
 
+  const handleClick = () => {
+    if (title) {
+      router.push(`/project/${id}?title=${encodeURIComponent(title)}`);
+    } else {
+      router.push(`/project/${id}`);
+    }
+  };
   return (
     <motion.div className=" w-96 h-80 flex items-center justify-center opacity-0 group-hover/pin:opacity-100 z-[60] transition duration-500">
       <div className="w-full h-full -mt-7 flex-none  inset-0">
         <div className="absolute top-0 inset-x-0  flex justify-center gap-2">
-          <Button onClick={() => route.push(`/project/${id}`)}>Data</Button>
+          <Button onClick={handleClick}>Data</Button>
           <Button type="dashed" onClick={() => alert("Clicked Edit")}>
             Edit
           </Button>
@@ -114,6 +123,7 @@ export const PinPerspective = ({
             perspective: "1000px",
             transform: "rotateX(70deg) translateZ(0)",
           }}
+          onClick={handleClick}
           className="absolute left-1/2 top-1/2 ml-[0.09375rem] mt-4 -translate-x-1/2 -translate-y-1/2"
         >
           <>
