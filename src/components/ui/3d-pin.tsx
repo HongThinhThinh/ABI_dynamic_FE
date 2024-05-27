@@ -6,6 +6,7 @@ import ButtonDelete from "./delete-button/ButtonDelete";
 import { Button, Popconfirm } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
 import { Meteors } from "./meteors";
+import { useRouter } from "next/navigation";
 export const PinContainer = ({
   children,
   title,
@@ -13,11 +14,13 @@ export const PinContainer = ({
   className,
   containerClassName,
   handleDelete,
+  id,
 }: {
   children: React.ReactNode;
   title?: string;
   href?: string;
   className?: string;
+  id?: string;
   containerClassName?: string;
   handleDelete?: () => void;
 }) => {
@@ -32,6 +35,7 @@ export const PinContainer = ({
     setTransform("translate(-50%,-50%) rotateX(0deg) scale(1)");
   };
 
+  const route = useRouter();
   return (
     <div
       className={cn(
@@ -42,7 +46,7 @@ export const PinContainer = ({
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       onClick={() => {
-        // alert("clicked");
+        route.push(`/project/${id}`);
       }}
     >
       <div
@@ -63,7 +67,12 @@ export const PinContainer = ({
           </div>
         </div>
       </div>
-      <PinPerspective handleDelete={handleDelete} title={title} href={href} />
+      <PinPerspective
+        id={id}
+        handleDelete={handleDelete}
+        title={title}
+        href={href}
+      />
     </div>
   );
 };
@@ -71,17 +80,21 @@ export const PinContainer = ({
 export const PinPerspective = ({
   title,
   href,
+  id,
   handleDelete,
 }: {
+  id?: string;
   title?: string;
   href?: string;
   handleDelete?: () => void; // Corrected props declaration
 }) => {
+  const route = useRouter();
+
   return (
     <motion.div className=" w-96 h-80 flex items-center justify-center opacity-0 group-hover/pin:opacity-100 z-[60] transition duration-500">
       <div className="w-full h-full -mt-7 flex-none  inset-0">
         <div className="absolute top-0 inset-x-0  flex justify-center gap-2">
-          <Button onClick={() => alert("Clicked Data")}>Data</Button>
+          <Button onClick={() => route.push(`/project/${id}`)}>Data</Button>
           <Button type="dashed" onClick={() => alert("Clicked Edit")}>
             Edit
           </Button>

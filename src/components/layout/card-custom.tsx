@@ -6,14 +6,16 @@ interface Props {
   title?: string;
   apiPrefix?: string;
   img?: string;
+  id?: string;
   handleDelete?: () => void;
 }
 
 function CardCustom(props: Props) {
-  const { title, apiPrefix, img, handleDelete } = props;
+  const { title, apiPrefix, img, handleDelete, id } = props;
 
   return (
     <PinContainer
+      id={id}
       title="/ui.aceternity.com"
       href="https://twitter.com/mannupaaji"
       handleDelete={handleDelete}

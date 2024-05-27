@@ -82,6 +82,7 @@ function HomePage() {
               {data.map((item) => (
                 <CardCustom
                   key={item.id}
+                  id={item.id}
                   title={item.name}
                   apiPrefix={item.apiPrefix}
                   img={item.project_img}
