@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/breadcrumb";
 import { SlashIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
+import Node from "@/app/test/page";
 
 const ProjectPage = ({
   params: { id },
@@ -38,6 +39,8 @@ const ProjectPage = ({
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
+
+      <Node />
     </div>
   );
 };
