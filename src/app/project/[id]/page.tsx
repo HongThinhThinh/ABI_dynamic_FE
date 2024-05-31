@@ -11,13 +11,7 @@ import { SlashIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 import Node from "@/app/test/page";
 
-const ProjectPage = ({
-  params: { id },
-  title,
-}: {
-  params: { id: string };
-  title: string;
-}) => {
+export const ProjectPage = ({ params: { id } }: { params: { id: string } }) => {
   return (
     <div>
       <Breadcrumb>
@@ -44,5 +38,3 @@ const ProjectPage = ({
     </div>
   );
 };
-
-export default ProjectPage;
