@@ -94,7 +94,7 @@ export const PinPerspective = ({
 
   const handleClick = () => {
     if (title) {
-      router.push(`/project/${id}?title=${encodeURIComponent(title)}`);
+      router.push(`/project/${id}`);
     } else {
       router.push(`/project/${id}`);
     }
